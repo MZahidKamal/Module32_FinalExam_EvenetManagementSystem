@@ -10,10 +10,11 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
-from pathlib import Path
 import os
-
 import environ
+import dj_database_url
+from pathlib import Path
+
 env = environ.Env()
 environ.Env.read_env()
 
@@ -91,11 +92,17 @@ WSGI_APPLICATION = 'Module32_FinalExam_EvenetManagementSystem.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+DATABASES = {                                                                                                           # Added database configuration for PostgreSQL during deployment on Render
+    'default': dj_database_url.config(
+        # Feel free to alter this value to suit your needs.
+        default='postgres://eventhub_postgresql_user:v55gIHuKWYNCcZ8ZZggzI6bJM4dchWiw@dpg-cmksjrmct0pc73d3sdd0-a.oregon-postgres.render.com/eventhub_postgresql',
+    )
 }
 
 
