@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}
+    <title>Login</title>
+{% endblock title %}
+{% block content %}
+
+    <div class="w-50 mx-auto pt-5">
+        <form method="post" class="row">
+            {% csrf_token %}
+            <div class="col-12 p-2">
+                {{form.username}}
+            </div>
+            <div class="col-12 p-2">
+                {{form.password}}
+            </div>
+            <p><a href="/password-reset/">Forget password?</a></p>
+            <button type="submit" class="btn btn-info">Login</button>
+        </form>
+    </div>
+{% endblock content %}

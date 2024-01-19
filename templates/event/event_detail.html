@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}
+    <title>{{ event.name }}</title>
+{% endblock title %}
+{% block content %}
+    <main class="pt-5">
+        <div class="card w-50 mx-auto">
+            <div class="card-header">
+                Date: {{ event.date }}, Time: {{ event.time }}
+            </div>
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h5 class="card-title">{{ event.name }}</h5>
+                    </div>
+                    <div>
+                        {% if request.user.user_role == 'attendee' and user not in event.attendees.all %}
+                            <a href="/add_attendee/{{event.id}}/">
+                                <button class="btn btn-info">Accept</button>
+                            </a>
+                            <button disabled class="btn btn-danger">Decline</button>
+                        {% endif %}
+                        {% if request.user in event.attendees.all %}
+                            <button type="button" class="btn btn-success">Already Added</button>
+                            <button disabled class="btn btn-danger">Decline</button>
+                        {% endif %}
+                    </div>
+                </div>
+                <p class="card-text">Location: {{ event.location }}</p>
+                <p class="card-text">Description: {{ event.description }}</p>
+                <p class="card-text">Organizer: {{ event.organizer.first_name }} {{ event.organizer.last_name }}</p>
+                <p class="card-text">Category: {{ event.categories |title }}</p>
+                <div>
+                    Attendee Count: <span id="attendeeCount">{{ event.attendees.count }}</span>
+                </div>
+                <div class="pt-2">
+                    Tags :
+                    {% for tag in event.tags.all %}
+                        <a href="/?tag={{ tag }}" class="btn btn-secondary btn-sm">{{ tag }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

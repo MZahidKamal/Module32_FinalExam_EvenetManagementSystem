@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block title %}
+    <title>All Event</title>
+{% endblock title %}
+{% block content %}
+    <main class="container pt-5">
+        <h1>EventHub - Streamlining Your Event Experience</h1>
+        <p>EventHub is a comprehensive Event Management System designed to simplify and enhance the process of organizing and participating in events. Whether you're an event organizer or an attendee, EventHub provides a user-friendly platform to create, manage, and engage with events effortlessly. From seamless event creation and management to efficient attendee tracking, EventHub offers a centralized solution for all your event-related needs.</p>
+        <div class="row">
+            <div class="col-8">
+                <h3>All Event</h3>
+            </div>
+            <div class="col-4">
+                <select class="form-select" aria-label="Default select example" onchange="window.location.href = this.value;">
+                    <option selected>Filter By Category</option>
+                    {% for category in category_list %}
+                        <option value="?category={{category.name}}">{{category.name}}</option>
+                    {%endfor%}
+                </select>
+            </div>
+        </div>
+        <div class="row pt-3">
+            {% for event in events %}
+                <div class="col-sm-12 mb-3 mb-sm-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-6">
+                                    <a class="link-primary" href="/event/{{event.id}}/"><h5 class="card-title">{{event.name}}</h5></a>
+                                </div>
+                                <div class="col-6">
+                                    <div>
+                                        {% if request.user.user_role == 'attendee' and user not in event.attendees.all %}
+                                            <a href="/add_attendee/{{event.id}}/">
+                                                <button class="btn btn-info">Accept</button>
+                                            </a>
+                                            <button disabled class="btn btn-danger">Decline</button>
+                                        {% endif %}
+                                        {% if request.user in event.attendees.all %}
+                                            <button type="button" class="btn btn-success">Already Added</button>
+                                            <button disabled class="btn btn-danger">Decline</button>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="card-text">Date: {{ event.date }}, Time: {{ event.time }}</p>
+                            <p class="card-text">Organizer: {{ event.organizer.first_name }} {{ event.organizer.last_name }}</p>
+                            <p class="card-text">Category: {{ event.categories |title }}</p>
+                            <div class="card-text">
+                                Attendee Count: <span id="attendeeCount">{{ event.attendees.count }}</span>
+                            </div>
+                            <div class="pt-2">
+                                Tags :
+                                {% for tag in event.tags.all %}
+                                    <a href="/?tag={{ tag }}" class="btn btn-secondary btn-sm">{{ tag }}</a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </main>
+{% endblock content %}

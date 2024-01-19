@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+{% block title %}
+    <title>Profile</title>
+{% endblock title %}
+{% block content %}
+    <section style="background-color: #fff;">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="card mb-4">
+                        <div class="card-body text-center">
+                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+                                 class="rounded-circle img-fluid" style="width: 150px;">
+                            <h5 class="my-3">{{user.first_name}} {{user.last_name}}</h5>
+                            <p class="text-muted mb-1">{{user.get_user_role_display }}</p>
+                            <div class="d-flex justify-content-center mb-2">
+                                <a href="/password-reset/" class="btn btn-primary">Reset Password</a>
+                                {% if request.user.user_role == 'attendee'  %}
+                                    <a class="btn btn-primary ms-3" href="/attendees/">Dashboard</a>
+                                {% endif %}
+                                {% if request.user.user_role == 'organizer' %}
+                                    <a class="btn btn-primary ms-3" href="/my-event/">Dashboard</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Full Name</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p class="text-muted mb-0">{{user.first_name}} {{user.last_name}}</p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Email</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p class="text-muted mb-0">{{user.email}}</p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <p class="mb-0">Username</p>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p class="text-muted mb-0">{{user.username}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card mb-4 mb-md-0">
+                                    <div class="card-body">
+
+                                        <div class="row">
+                                            <div class="col-md-7">
+                                                <div>
+                                                    <label for="id_first_name">First name:</label>
+                                                    {{form.first_name}}
+                                                </div>
+                                                <div>
+                                                    <label for="id_last_name">Last name:</label>
+                                                    {{form.last_name}}
+                                                </div>
+                                                <div>
+                                                    <label for="id_last_name">Username:</label>
+                                                    {{form.username}}
+                                                </div>
+                                                <div>
+                                                    <label for="id_email">Email address:</label>
+                                                    {{form.email}}
+                                                </div>
+                                                <div class="pt-2">
+                                                    <input type="submit" class="btn btn-primary " value="Save">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <div>
+                                                    <label for="id_old_password">Old Password:</label>
+                                                    {{form.old_password}}
+                                                </div>
+                                                <div>
+                                                    <label for="id_new_password1">New Password:</label>
+                                                    {{form.new_password1}}
+                                                </div>
+                                                <div>
+                                                    <label for="id_new_password2">Confirm New Password:</label>
+                                                    {{form.new_password2}}
+
+                                                </div>
+                                                <div class="pt-2">
+                                                    <input type="submit" class="btn btn-primary " value="Change Password">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% if form.errors %}
+                                            <div class="alert alert-error">
+                                                <ul>
+                                                    {% for field, errors in form.errors.items %}
+                                                        <li class="list-disc list-inside">{{field}} {{ errors.0 }}</li>
+                                                    {% endfor %}
+                                                </ul>
+                                            </div>
+                                        {% endif %}
+                                    </>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock content %}
