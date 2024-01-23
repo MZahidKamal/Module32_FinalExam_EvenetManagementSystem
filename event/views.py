@@ -12,13 +12,16 @@ def all_event_list(request):
     category_filter = request.GET.get('category')
     if category_filter:
         events = Event.objects.filter(is_public=True, categories__name=category_filter)
-        return render(request, 'event/event_list.html', {'events': events, 'category_list': category_list})
+        # return render(request, 'event/event_list.html', {'events': events, 'category_list': category_list})
+        return render(request, 'index.html', {'events': events, 'category_list': category_list})
     tag = request.GET.get("tag")
     if tag:
         events = Event.objects.filter(is_public=True, tags__name__in=[tag])
-        return render(request, 'event/event_list.html', {'events': events, 'category_list': category_list})
+        # return render(request, 'event/event_list.html', {'events': events, 'category_list': category_list})
+        return render(request, 'index.html', {'events': events, 'category_list': category_list})
     events = Event.objects.filter(is_public=True)
-    return render(request, 'event/event_list.html', {'events': events, 'category_list': category_list})
+    # return render(request, 'event/event_list.html', {'events': events, 'category_list': category_list})
+    return render(request, 'index.html', {'events': events, 'category_list': category_list})
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
