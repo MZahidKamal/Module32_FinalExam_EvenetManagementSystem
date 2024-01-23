@@ -47,12 +47,12 @@
         <div id="logo" class="me-auto">
             <!-- Uncomment below if you prefer to use a text logo -->
             <!-- <h1><a href="index.html">The<span>Event</span></a></h1>-->
-            <a href="" class="scrollto"><img src="../static/img/logo.png" alt="" title=""></a>
+            <a href="{% url 'home' %}" class="scrollto"><img src="../static/img/logo.png" alt="" title=""></a>
         </div>
 
         <nav id="navbar" class="navbar order-last order-lg-0">
             <ul>
-                <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+                <li><a class="nav-link scrollto active" href="{% url 'home' %}">Home</a></li>
                 <li><a class="nav-link scrollto" href="#about">About</a></li>
                 <li><a class="nav-link scrollto" href="#speakers">Speakers</a></li>
                 <li><a class="nav-link scrollto" href="#schedule">Events</a></li>
@@ -78,7 +78,7 @@
                 </ul>
               </li> -->
                 <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-                <li><a class="nav-link scrollto" href="#signup">Sign Up</a></li>
+                <li><a class="nav-link scrollto" href="{% url 'register' %}">Sign Up</a></li>
                 <li><a class="nav-link scrollto" href="#signin">Sign In</a></li>
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
@@ -870,6 +870,12 @@
             <div class="form">
                 <form action="forms/contact.php" method="post" role="form" class="php-email-form">
 
+                    {% csrf_token %}
+
+                    <div class="form-group mt-3">
+                        <input type="" class="form-control" name="user-role" id="user-role" placeholder="User Role" required>{{form.user_role}}
+                    </div>
+
                     <div class="row">
                         <div class="form-group col-md-6">
                             <input type="text" name="firstname" class="form-control" id="firstname" placeholder="First Name" required>
@@ -904,7 +910,7 @@
             </div>
 
         </div>
-    </section><!-- End Sign In Section -->
+    </section><!-- End Sign Up Section -->
 
     <!-- ======= Sign In Section ======= -->
     <section id="signin" class="section-bg">

@@ -1,34 +1,26 @@
 {% extends "base.html" %}
-{% block title %}
-    <title>Register</title>
-{% endblock title %}
+
+{% block title %}<title>Register</title>{% endblock title %}
+
 {% block content %}
+
     <div class="w-50 mx-auto pt-5">
+
+
         <form method="post" class="row">
             {% csrf_token %}
-            <div class="col-12 p-2">
-                {{form.user_role}}
-            </div>
-            <div class="col-12 p-2">
-                {{form.first_name}}
-            </div>
-            <div class="col-12 p-2">
-                {{form.last_name}}
-            </div>
-            <div class="col-12 p-2">
-                {{form.username}}
-            </div>
-            <div class="col-12 p-2">
-                {{form.email}}
-            </div>
-            <div class="col-12 p-2">
-                {{form.password1}}
-            </div>
-            <div class="col-12 p-2">
-                {{form.password2}}
-            </div>
+            <div class="col-12 p-2">{{form.user_role}}</div>
+            <div class="col-12 p-2">{{form.first_name}}</div>
+            <div class="col-12 p-2">{{form.last_name}}</div>
+            <div class="col-12 p-2">{{form.username}}</div>
+            <div class="col-12 p-2">{{form.email}}</div>
+            <div class="col-12 p-2">{{form.password1}}</div>
+            <div class="col-12 p-2">{{form.password2}}</div>
             <button type="submit" class="btn btn-info">Register</button>
         </form>
+
+
+
         {% if form.errors %}
             <div class="alert alert-error">
                 <ul>
@@ -38,5 +30,9 @@
                 </ul>
             </div>
         {% endif %}
+
+
     </div>
+
+
 {% endblock content %}
