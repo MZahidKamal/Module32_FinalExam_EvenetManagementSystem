@@ -30,7 +30,7 @@ def register(request):
             user.save()
             # Send verification email
             subject = 'Activate your account'
-            message = render_to_string('activation_email.html', {
+            message = render_to_string('account/activation_email.html', {
                 'user': user,
                 'uid': urlsafe_base64_encode(force_bytes(user.pk)),
                 'token': default_token_generator.make_token(user),

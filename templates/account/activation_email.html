@@ -1,0 +1,11 @@
+{% autoescape off %}
+
+    Hello,
+    Thanks for registering with us. To activate your account, please click on the following link:
+    
+    Activation URL: https://eventhub-vss1.onrender.com{% url 'activate' uidb64=uid token=token %}
+
+    With best regards,
+    TheEvent Team.
+
+{% endautoescape %}
