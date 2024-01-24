@@ -44,6 +44,25 @@ def register(request):
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+def activate_account(request, uidb64, token):
+    try:
+        uid = force_str(urlsafe_base64_decode(uidb64))
+        user = Account.objects.get(pk=uid)
+    except (TypeError, ValueError, OverflowError, Account.DoesNotExist):
+        user = None
+
+    if user is not None and default_token_generator.check_token(user, token):
+        user.is_active = True
+        user.save()
+        login(request, user)
+        messages.success(request, 'Your account has been activated.')
+        return redirect('home')  # Redirect to your home page or wherever you want
+    else:
+        messages.error(request, 'Activation link is invalid.')
+        return redirect('login')  # Redirect to your login page or wherever you want
+
+#------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 def login_view(request):
     form = LoginForm(request.POST)
     if request.method == 'POST':
@@ -87,24 +106,5 @@ def profile(request):
 def logout_view(request):
     logout(request)
     return redirect('event')
-
-#------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-def activate_account(request, uidb64, token):
-    try:
-        uid = force_str(urlsafe_base64_decode(uidb64))
-        user = Account.objects.get(pk=uid)
-    except (TypeError, ValueError, OverflowError, Account.DoesNotExist):
-        user = None
-
-    if user is not None and default_token_generator.check_token(user, token):
-        user.is_active = True
-        user.save()
-        login(request, user)
-        messages.success(request, 'Your account has been activated.')
-        return redirect('home')  # Redirect to your home page or wherever you want
-    else:
-        messages.error(request, 'Activation link is invalid.')
-        return redirect('login')  # Redirect to your login page or wherever you want
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------------

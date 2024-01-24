@@ -60,33 +60,26 @@
                 <li><a class="nav-link scrollto" href="#hotels">Hotels</a></li>
                 <li><a class="nav-link scrollto" href="#gallery">Gallery</a></li>
                 <li><a class="nav-link scrollto" href="#supporters">Sponsors</a></li>
-                <!-- <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
-                <ul>
-                  <li><a href="#">Drop Down 1</a></li>
-                  <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
-                    <ul>
-                      <li><a href="#">Deep Drop Down 1</a></li>
-                      <li><a href="#">Deep Drop Down 2</a></li>
-                      <li><a href="#">Deep Drop Down 3</a></li>
-                      <li><a href="#">Deep Drop Down 4</a></li>
-                      <li><a href="#">Deep Drop Down 5</a></li>
-                    </ul>
-                  </li>
-                  <li><a href="#">Drop Down 2</a></li>
-                  <li><a href="#">Drop Down 3</a></li>
-                  <li><a href="#">Drop Down 4</a></li>
-                </ul>
-              </li> -->
                 <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-                <li><a class="nav-link scrollto" href="{% url 'register' %}">Sign Up</a></li>
                 <li><a class="nav-link scrollto" href="#signin">Sign In</a></li>
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
         </nav><!-- .navbar -->
-        <a class="buy-tickets scrollto" href="#buy-tickets">Buy Tickets</a>
+        <a class="buy-tickets" href="{% url 'register' %}">Register</a>
 
     </div>
 </header><!-- End Header -->
+
+<!-- ======= Message Section ======= -->
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <div class="alert alert-primary" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </ul>
+{% endif %}<!-- End Message Section -->
 
 <!-- ======= Hero Section ======= -->
 <section id="hero">
@@ -861,56 +854,6 @@
 
         </div>
     </section><!-- End Contact Section -->
-
-    <!-- ======= Sign Up Section ======= -->
-    <section id="signup" class="section-bg">
-        <div class="container" data-aos="fade-up">
-            <div class="section-header"><h2>Sign Up</h2></div>
-
-            <div class="form">
-                <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-
-                    {% csrf_token %}
-
-                    <div class="form-group mt-3">
-                        <input type="" class="form-control" name="user-role" id="user-role" placeholder="User Role" required>{{form.user_role}}
-                    </div>
-
-                    <div class="row">
-                        <div class="form-group col-md-6">
-                            <input type="text" name="firstname" class="form-control" id="firstname" placeholder="First Name" required>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Last Name" required>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-md-6 mt-3 mt-md-0">
-                            <input type="email" name="email" class="form-control" id="email" placeholder="Email" required>
-                        </div>
-                        <div class="form-group col-md-6 mt-3 mt-md-0">
-                            <input type="text" class="form-control" name="username" id="username" placeholder="Username" required>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-md-6 mt-3 mt-md-0">
-                            <input type="password" name="password1" class="form-control" id="password1" placeholder="Password" required>
-                        </div>
-                        <div class="form-group col-md-6 mt-3 mt-md-0">
-                            <input type="password" name="password2" class="form-control" id="password2" placeholder="Confirm Password" required>
-                        </div>
-                    </div>
-
-                    <div class="my-3">
-                        <div class="loading">Loading</div>
-                        <div class="error-message"></div>
-                    </div>
-                    <div class="text-center"><button type="submit">Register</button></div>
-                </form>
-            </div>
-
-        </div>
-    </section><!-- End Sign Up Section -->
 
     <!-- ======= Sign In Section ======= -->
     <section id="signin" class="section-bg">
