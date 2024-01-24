@@ -36,7 +36,7 @@ def register(request):
                 'token': default_token_generator.make_token(user),
             })
             user.email_user(subject, message)
-            return render(request, 'activation_email_send_text.html')
+            return render(request, 'account/activation_email_sent_text.html')
             # return redirect('login')
     else:
         form = RegisterForm()
