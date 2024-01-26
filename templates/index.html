@@ -758,7 +758,8 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form method="POST" action="#">
+                        <form method="POST" action="{% url 'under_development' %}">
+                            {% csrf_token %}
                             <div class="form-group">
                                 <input type="text" class="form-control" name="your-name" placeholder="Your Name">
                             </div>
