@@ -657,7 +657,8 @@
                 <p>Rerum numquam illum recusandae quia mollitia consequatur.</p>
             </div>
 
-            <form method="POST" action="#">
+            <form method="POST" action="{% url 'under_development' %}">
+                {% csrf_token %}
                 <div class="row justify-content-center">
                     <div class="col-lg-6 col-md-10 d-flex">
                         <input type="text" class="form-control" placeholder="Enter your Email">
@@ -822,7 +823,7 @@
             </div>
 
             <div class="form">
-                <form action="{% url 'contact' %}" method="post" role="form" class="php-email-form">
+                <form action="{% url 'under_development' %}" method="post" role="form" class="php-email-form">
                     {% csrf_token %}
                     <div class="row">
                         <div class="form-group col-md-6">
