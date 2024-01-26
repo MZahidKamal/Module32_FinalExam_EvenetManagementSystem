@@ -11,15 +11,15 @@ def all_event_list(request):
     category_list = EventCategory.objects.all()
     category_filter = request.GET.get('category')
     if category_filter:
-        events = Event.objects.filter(is_public=True, categories__name=category_filter)
+        events = Event.objects.filter(is_public=True, categories__name=category_filter).order_by('date')
         # return render(request, 'event/event_list.html', {'events': events, 'category_list': category_list})
         return render(request, 'index.html', {'events': events, 'category_list': category_list})
     tag = request.GET.get("tag")
     if tag:
-        events = Event.objects.filter(is_public=True, tags__name__in=[tag])
+        events = Event.objects.filter(is_public=True, tags__name__in=[tag]).order_by('date')
         # return render(request, 'event/event_list.html', {'events': events, 'category_list': category_list})
         return render(request, 'index.html', {'events': events, 'category_list': category_list})
-    events = Event.objects.filter(is_public=True)
+    events = Event.objects.filter(is_public=True).order_by('date')
     # return render(request, 'event/event_list.html', {'events': events, 'category_list': category_list})
     return render(request, 'index.html', {'events': events, 'category_list': category_list})
 
@@ -87,7 +87,7 @@ def my_event(request):
             'event_list': event_list,
             'category_list': category_list,
         }
-        return render(request, 'event/z-my_event_list.html', context)
+        return render(request, 'event/my_event_list.html', context)
     else:
         return redirect('event')
 
