@@ -1,8 +1,9 @@
 {% extends "base.html" %}
-{% block title %}
-    <title>My Event</title>
-{% endblock title %}
+
+{% block title %}<title>My Event</title>{% endblock title %}
+
 {% block content %}
+
     <main class="container pt-5">
         <div class="d-flex justify-content-end">
             <a href="/create-event/" class="btn btn-primary">Create Event</a>
@@ -40,4 +41,5 @@
             {% endfor %}
         </div>
     </main>
+
 {% endblock content %}

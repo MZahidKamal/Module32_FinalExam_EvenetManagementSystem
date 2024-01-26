@@ -81,8 +81,13 @@ def accept_attendees(request, id):
 # Organizer Dashboard
 def my_event(request):
     if request.user.user_role == 'organizer':
-        event_list = Event.objects.filter(organizer=request.user)
-        return render(request, 'event/my_event_list.html', {'event_list': event_list})
+        event_list = Event.objects.filter(organizer=request.user).order_by('date')
+        category_list = EventCategory.objects.all()
+        context = {
+            'event_list': event_list,
+            'category_list': category_list,
+        }
+        return render(request, 'event/z-my_event_list.html', context)
     else:
         return redirect('event')
 
