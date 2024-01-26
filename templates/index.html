@@ -799,7 +799,7 @@
                     <div class="contact-address">
                         <i class="bi bi-geo-alt"></i>
                         <h3>Address</h3>
-                        <address>A108 Adam Street, NY 535022, USA</address>
+                        <address>Ludwig-Erhard-Anlage 1,<br>60327 Frakfurt am Main, Germany</address>
                     </div>
                 </div>
 
@@ -807,7 +807,7 @@
                     <div class="contact-phone">
                         <i class="bi bi-phone"></i>
                         <h3>Phone Number</h3>
-                        <p><a href="tel:+155895548855">+1 5589 55488 55</a></p>
+                        <p><a href="tel:+4917673251642">+49 176 7325 1642</a></p>
                     </div>
                 </div>
 
@@ -815,14 +815,15 @@
                     <div class="contact-email">
                         <i class="bi bi-envelope"></i>
                         <h3>Email</h3>
-                        <p><a href="mailto:info@example.com">info@example.com</a></p>
+                        <p><a href="mailto:eventhub.e.info@gmail.com">eventhub.e.info@gmail.com</a></p>
                     </div>
                 </div>
 
             </div>
 
             <div class="form">
-                <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+                <form action="{% url 'contact' %}" method="post" role="form" class="php-email-form">
+                    {% csrf_token %}
                     <div class="row">
                         <div class="form-group col-md-6">
                             <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
@@ -931,7 +932,7 @@
 <script src="../static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="../static/vendor/glightbox/js/glightbox.min.js"></script>
 <script src="../static/vendor/swiper/swiper-bundle.min.js"></script>
-<script src="../static/vendor/php-email-form/validate.js"></script>
+{#<script src="../static/vendor/php-email-form/validate.js"></script>#}
 
 <!-- Template Main JS File -->
 <script src="../static/js/main.js"></script>
