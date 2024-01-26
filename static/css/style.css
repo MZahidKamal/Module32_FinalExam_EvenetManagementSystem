@@ -1627,6 +1627,41 @@ h6 {
 }
 
 /*--------------------------------------------------------------
+# User Profile Section
+--------------------------------------------------------------*/
+#user-profile {
+  padding: 60px 0;
+}
+
+#user-profile .text-muted {
+  color: #9195a2;
+}
+
+#user-profile input {
+  border-radius: 0;
+  box-shadow: none;
+  font-size: 14px;
+}
+
+#user-profile input:focus {
+  border-color: #f82249;
+}
+
+#user-profile button[type='submit'] {
+  background: #f82249;
+  border: 0;
+  padding: 6px 15px;
+  color: #fff;
+  transition: 0.4s;
+  border-radius: 50px;
+  cursor: pointer;
+}
+
+#user-profile button[type='submit']:hover {
+  background: #e0072f;
+}
+
+/*--------------------------------------------------------------
 # Footer
 --------------------------------------------------------------*/
 #footer {

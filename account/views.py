@@ -99,7 +99,7 @@ def profile(request):
             return redirect('profile')  # or wherever you want to redirect after updating the profile
     else:
         form = UserProfileUpdateForm(instance=user)
-    return render(request, 'account/profile.html', {'user': user, 'form': form})
+    return render(request, 'account/user-profile.html', {'user': user, 'form': form})
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
