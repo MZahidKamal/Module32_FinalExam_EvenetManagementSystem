@@ -1814,6 +1814,44 @@ h6 {
 }
 
 /*--------------------------------------------------------------
+# Event Detail Section
+--------------------------------------------------------------*/
+#event-details {
+  padding: 60px 0;
+}
+
+#event-details .details h2 {
+  color: #f82249;
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+#event-details .details p {
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+#event-details .tag-list {
+  list-style: none;
+  display: flex;
+  padding: 0;
+}
+
+#event-details .tag-list .tag-item {
+  margin-right: 7px;
+}
+
+#event-details .tag-list .tag-item a {
+  padding: 4px 10px;
+  background-color: #0e1b4d;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 200;
+  border-radius: 50px;
+}
+
+/*--------------------------------------------------------------
 # Footer
 --------------------------------------------------------------*/
 #footer {

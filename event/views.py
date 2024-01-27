@@ -20,7 +20,6 @@ def all_event_list(request):
         # return render(request, 'event/event_list.html', {'events': events, 'category_list': category_list})
         return render(request, 'index.html', {'events': events, 'category_list': category_list})
     events = Event.objects.filter(is_public=True).order_by('date')
-    # return render(request, 'event/event_list.html', {'events': events, 'category_list': category_list})
     return render(request, 'index.html', {'events': events, 'category_list': category_list})
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -28,7 +27,7 @@ def all_event_list(request):
 def event_detail(request, event_id):
     event = get_object_or_404(Event, id=event_id)
     attendees = event.attendees.all()
-    return render(request, 'event/event_detail.html', {'event': event, 'attendees': attendees})
+    return render(request, 'event/event-details.html', {'event': event, 'attendees': attendees})
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
